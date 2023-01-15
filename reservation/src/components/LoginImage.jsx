@@ -11,54 +11,32 @@ const itemData = [
   },
   {
     img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2',
-    title: 'Doc2'
+    title: 'Doc2',
+    rows: 2,
+    cols: 2
   },
   {
     img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7',
-    title: 'Doc3'
+    title: 'Doc3',
+    rows: 2,
+    cols: 2
   },
   {
     img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d',
     title: 'Doc4',
+    rows: 2,
     cols: 2
   },
   {
     img: 'https://images.unsplash.com/photo-1612349316228-5942a9b489c2',
     title: 'Doc5',
-    cols: 2
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-    title: 'Honey',
-    author: '@arwinneil',
     rows: 2,
     cols: 2
   },
   {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-    title: 'Mushrooms',
+    img: 'https://plus.unsplash.com/premium_photo-1661766752153-9f0c3fad728f',
+    title: 'Doc6',
     rows: 2,
-    cols: 2
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-    title: 'Sea star'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
     cols: 2
   }
 ];
