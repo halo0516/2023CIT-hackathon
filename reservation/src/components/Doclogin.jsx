@@ -6,7 +6,7 @@ import LoginImage from './LoginImage';
 import './Login.css';
 
 
-function Login() {
+function Doclogin() {
   const errRef = useRef();
 
   const [user, setUser] = useState('');
@@ -25,7 +25,7 @@ function Login() {
       //   `/account/username=${user}&password=${pwd}`
       // );
     //   sessionStorage.setItem('app-token', response.data.token);
-      const response = await axios.get('http://localhost:3500/account');
+      const response = await axios.get('http://localhost:3500/doc_account');
       console.log(response.data)
       setUser('');
       setPwd('');
@@ -35,8 +35,6 @@ function Login() {
         setErrMsg('No Server Response');
       } else if (err.response.status === 400) {
         setErrMsg('Missing Username or Password');
-      } else if (err.response.status === 403) {
-        setErrMsg('Account Lockout');
       } else {
         setErrMsg('Login Failed');
       }
@@ -63,7 +61,7 @@ function Login() {
           >
             {errMsg}
           </p>
-          <p className="welcome-text">Welcome to the reservation System!</p>
+          <p className="welcome-text">Welcome back! Thank you for your Effort!</p>
           <p className="signin-text">Sign In</p>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">
@@ -89,23 +87,10 @@ function Login() {
             </label>
             <button type="submit"> Sign In </button>
           </form>
-          <p>
-            Need an Account?
-            <br />
-            <span className="line">
-              <Link to="/register">Sign Up</Link>
-            </span>
-            <p></p>
-            Doc login page
-            <br />
-            <span className="line">
-              <Link to="/doclogin">Auth Login</Link>
-            </span>
-            </p>            
         </section>
       )}
     </div>
   );
 }
 
-export default Login;
+export default Doclogin;

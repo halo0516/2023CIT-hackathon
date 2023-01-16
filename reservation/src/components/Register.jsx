@@ -239,13 +239,6 @@ function Register() {
                 Sign Up
               </button>
             </form>
-            <p>
-              Already have an account?
-              <br />
-              <span className="line">
-                <Link to="/login">Sign In</Link>
-              </span>
-            </p>
           </section>
         )}
       </Router>

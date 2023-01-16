@@ -9,6 +9,7 @@ import {
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
+import Doclogin from './components/Doclogin';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/doclogin">
+            <Doclogin />
           </Route>
           {/* <Route path="/home">
             <HomePage
