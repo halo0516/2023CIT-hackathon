@@ -63,7 +63,7 @@ function Login() {
           >
             {errMsg}
           </p>
-          <p className="welcome-text">Welcome to the reservation System!</p>
+          <p className="welcome-text">Welcome to the MCIT Office Hour reservation System!</p>
           <p className="signin-text">Sign In</p>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">
@@ -99,7 +99,7 @@ function Login() {
             Doc login page
             <br />
             <span className="line">
-              <Link to="/doclogin">Auth Login</Link>
+              <Link to="/doclogin">Prof Login</Link>
             </span>
             </p>            
         </section>

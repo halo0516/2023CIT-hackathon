@@ -61,7 +61,7 @@ function Doclogin() {
           >
             {errMsg}
           </p>
-          <p className="welcome-text">Welcome back! Thank you for your Effort!</p>
+          <p className="welcome-text">Welcome back! Thank you for your contribution to the MCIT Program!</p>
           <p className="signin-text">Sign In</p>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username">

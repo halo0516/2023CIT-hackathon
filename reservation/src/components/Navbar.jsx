@@ -23,15 +23,6 @@ function Navbar() {
               Log Out
             </div>
           </li>
-          {/* <li>
-            <Link
-              to="/profile"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <img src={profileIcon} alt="profile" />
-              Profile
-            </Link>
-          </li>         */}
           <li>
             <Link
               to="/home"
