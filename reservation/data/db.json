@@ -1,0 +1,67 @@
+{
+  "account": [
+    {
+      "username": "Benjamin",
+      "pwd": "ASDFasdf1234!",
+      "firstname": "Yuxiang",
+      "lastname": "Wang",
+      "id": 1
+    },
+    {
+      "username": "Charlene",
+      "pwd": "ASDFasdf1234!",
+      "firstname": "Zhifei",
+      "lastname": "Wu",
+      "id": 2
+    },
+    {
+      "username": "Robbyx",
+      "pwd": "ASDFasdf1234!",
+      "firstname": "Rubo",
+      "lastname": "Xing",
+      "id": 3
+    },
+    {
+      "username": "Liam",
+      "pwd": "ASDFasdf1234!",
+      "firstname": "Lang",
+      "lastname": "Qin",
+      "id": 4
+    }
+  ],
+  "doc_account": [
+    {
+      "username": "Doc1",
+      "pwd": "1234qwer",
+      "time": [
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "id": 101
+    },
+    {
+      "username": "Doc2",
+      "pwd": "1234qwer",
+      "time": [
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "id": 102
+    },
+    {
+      "username": "Doc3",
+      "pwd": "1234qwer",
+      "time": [
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00"
+      ],
+      "id": 103
+    }
+  ]
+}
