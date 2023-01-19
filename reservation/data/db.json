@@ -31,37 +31,46 @@
   ],
   "doc_account": [
     {
-      "username": "Doc1",
+      "username": "Harry Smith",
       "pwd": "1234qwer",
-      "time": [
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00"
-      ],
-      "id": 101
+      "course": "CIT594",
+      "dep": "Department of Computer and Information Science",
+      "profileImage": "https://directory.seas.upenn.edu/wp-content/uploads/2020/07/smith-harry.jpg", 
+      "twelve": "",
+      "thirteen": "",
+      "fourteen": "",
+      "fifteen": "",
+      "sixteen": "",
+      "seventeen": "",
+      "Docid": 101
     },
     {
-      "username": "Doc2",
+      "username": "Travis Mcgaha",
       "pwd": "1234qwer",
-      "time": [
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00"
-      ],
-      "id": 102
+      "course": "CIT595",
+      "dep": "Department of Computer and Information Science",
+      "profileImage": "https://directory.seas.upenn.edu/wp-content/uploads/2021/08/T_McGaha_sq-1-e1628545840568.jpeg", 
+      "twelve": "",
+      "thirteen": "",
+      "fourteen": "",
+      "fifteen": "",
+      "sixteen": "",
+      "seventeen": "",
+      "Docid": 102
     },
     {
-      "username": "Doc3",
+      "username": "Arvind Bhusnurmath",
       "pwd": "1234qwer",
-      "time": [
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00"
-      ],
-      "id": 103
+      "course": "CIT596",
+      "dep": "Department of Computer and Information Science",
+      "profileImage": "https://directory.seas.upenn.edu/wp-content/uploads/2020/03/Bhusnermath-Arvind.jpg", 
+      "twelve": "",
+      "thirteen": "",
+      "fourteen": "",
+      "fifteen": "",
+      "sixteen": "",
+      "seventeen": "",
+      "Docid": 103
     }
   ]
 }

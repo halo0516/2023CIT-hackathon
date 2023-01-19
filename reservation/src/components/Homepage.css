@@ -1,0 +1,297 @@
+.homepage {
+position: absolute;
+width: 1195px;
+height: 824px;
+left: 140px;
+top: 98px;
+}
+
+h {
+position: absolute;
+width: 624px;
+height: 139px;
+left: calc(50% - 624px/2);
+top: 98px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 43px;
+display: flex;
+align-items: center;
+text-align: center;
+text-transform: capitalize;
+
+color: #000000;
+}
+
+.docList{
+    box-sizing: border-box;
+
+    /* Auto layout */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 21px 5px;
+    gap: 55px;
+    
+    position: absolute;
+    width: 364px;
+    height: 482px;
+    left: 140px;
+    top: 261px;
+    
+    background: #D9D9D9;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.doctor:hover{
+    cursor: pointer;
+}
+
+.doctor{
+    box-sizing: border-box;
+
+/* Auto layout */
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 15px 38px;
+gap: 59px;
+
+width: 349px;
+height: 110px;
+
+background: #FFFFFF;
+border: 1px solid #E6E6E6;
+border-radius: 22px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+
+.doc1{
+width: 80px;
+height: 80px;
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+
+.doc_name{
+    width: 134px;
+height: 20px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+display: flex;
+align-items: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+
+.doc_time{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 23px 23px 18px;
+    gap: 68px;
+    
+    position: absolute;
+    width: 683px;
+    height: 661px;
+    left: calc(50% - 683px/2 + 273.5px);
+    top: 261px;
+    
+    background: #D9D9D9;
+
+}
+.doc_img{
+    width: 160px;
+    height: 160px;
+
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.doc_info{
+    display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 440px;
+height: 106px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+
+.time_slot{
+    width: 628px;
+    height: 264px;
+    
+    background: #FFFFFF;
+    border-radius: 15px;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    gap: 10px;
+}
+
+.time_title{
+    position: absolute;
+width: 169px;
+height: 24px;
+left: 28.5px;
+top: 251px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+.time_button:hover{
+    cursor: pointer;
+}
+
+.time_button{
+    margin-top: 30px;
+    margin-left: 150px;
+    width: 122px;
+    height: 45px;
+    text-align: center;
+    vertical-align: middle;
+    
+    background: #D9D9D9;
+    border-radius: 15px;
+
+}
+.doc_name {
+    width: 230px;
+height: 34px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.doc_class{
+    width: 71px;
+height: 24px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.doc_dep{
+    width: 440px;
+height: 24px;
+
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+}
+
+.doc_integrate{
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 37px;
+
+width: 637px;
+height: 160px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}

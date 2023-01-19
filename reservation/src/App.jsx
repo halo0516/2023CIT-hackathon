@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
 import Doclogin from './components/Doclogin';
+import Homepage from './components/Homepage'
 
 function App() {
   return (
@@ -32,14 +33,9 @@ function App() {
           <Route exact path="/doclogin">
             <Doclogin />
           </Route>
-          {/* <Route path="/home">
-            <HomePage
-              postModalIsOpen={postModalIsOpen}
-              setPostModalOpen={setPostModalOpen}
-              closePostModal={closePostModal}
-              setAlert={setAlert}
-            />
-          </Route> */}
+          <Route path="/home">
+            <Homepage/>
+          </Route>
           {/* <Route path="/profile/:userId?">
             <ProfilePage
               postModalIsOpen={postModalIsOpen}
