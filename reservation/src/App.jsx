@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Doclogin from './components/Doclogin';
 import Homepage from './components/Homepage'
+import DocHomePage from './components/DocHomepage';
 
 function App() {
   return (
@@ -36,14 +37,9 @@ function App() {
           <Route path="/home">
             <Homepage/>
           </Route>
-          {/* <Route path="/profile/:userId?">
-            <ProfilePage
-              postModalIsOpen={postModalIsOpen}
-              setPostModalOpen={setPostModalOpen}
-              closePostModal={closePostModal}
-              setAlert={setAlert}
-            />
-          </Route> */}
+          <Route exact path ="/dochome">
+            <DocHomePage/>
+          </Route>
         </Switch>
       </div>
     </Router>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './Homepage.css';
 import {useTimeSlots} from './CustomHook';
 
@@ -120,17 +120,19 @@ function HomePage() {
     };
     return(
         <div className='Homepage'>
-            <h1>Welcome to the Reservation System</h1>
+            <div className='Title'>
+                <h1>Welcome to the Reservation System</h1>
+            </div>
             <div className='docList'>
                 <div className='doctor' onClick = {() =>{viewTimeslot(0)}}>
                     <img className = 'doc1' src="https://directory.seas.upenn.edu/wp-content/uploads/2020/07/smith-harry.jpg" alt="Harry Smith"/>
                     <p className='doc_name'>Harry Smith</p>
                 </div>
-                <div className='doctor'onClick = {() =>{viewTimeslot(1)}}>
+                <div className='doctor' onClick = {() =>{viewTimeslot(1)}}>
                     <img className = 'doc1' src="https://directory.seas.upenn.edu/wp-content/uploads/2021/08/T_McGaha_sq-1-e1628545840568.jpeg" alt="Travis Q. McGaha"/>
                     <p className='doc_name'>Travis Mcgaha</p>
                 </div>
-                <div className='doctor'onClick = {() =>{viewTimeslot(2)}}>
+                <div className='doctor' onClick = {() =>{viewTimeslot(2)}}>
                     <img className = 'doc1' src="https://directory.seas.upenn.edu/wp-content/uploads/2020/03/Bhusnermath-Arvind.jpg" alt="Arvind Bhusnurmath"/>
                     <p className='doc_name'>Arvind Bhusnurmath</p>
                 </div>
