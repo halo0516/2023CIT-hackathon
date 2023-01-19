@@ -49,7 +49,7 @@ function Doclogin() {
         <section>
           <h1>Success!</h1>
           <p>
-            <Link to="/home">Go to Homepage</Link>
+            <Link to="/dochome">Go to Homepage</Link>
           </p>
         </section>
       ) : (
