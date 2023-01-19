@@ -117,7 +117,7 @@ def login_instructor():
 
 
 # TODO: router setting
-@app.router("/<str:username>", methods=["GET"])
+@app.route("/available", methods=["GET"])
 def get_availabilities_student():
     """Get the availabilities of office hours
 
@@ -141,6 +141,7 @@ def get_availabilities_student():
     else:
         return jsonify(message="Success", availabilities=availabilities), 200
 
+@app.route("/student", methods=["GET"])
 def get_schedule_student():
     """Get the schedule of office hours
 
@@ -164,7 +165,7 @@ def get_schedule_student():
         return jsonify(schedule=schedules), 200
 
 # TODO: router setting
-@app.route("/<str:username>", methods=["GET"])
+@app.route("/reserve", methods=["GET"])
 def reserve():
     """Reserve an office hour
 
@@ -202,7 +203,7 @@ def reserve():
         return jsonify(message="Office hour could not be reserved"), 500
 
 # TODO: router setting
-@app.route("/<str:username>", methods=["GET"])
+@app.route("/schedule", methods=["GET"])
 def show_schedule_instructor():
     """Show the schedule of office hours
 

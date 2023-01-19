@@ -1,4 +1,3 @@
-from model.Vaccine import Vaccine
 from model.Instructor import Instructor
 from model.Student import Student
 from util.Util import Util
@@ -18,35 +17,38 @@ current_student = None
 current_instructor = None
 
 
-def create_student(tokens):
-    # check 1: the length for tokens need to be exactly 3 to include all
-    #          information (with the operation name)
-    if len(tokens) != 3:
-        print("Failed to create user.")
-        return
+def create_student(username: str, password: str) -> int: 
+    """Create a student with the given username and password
 
-    username = tokens[1].lower()
-    password = tokens[2]
+    Args:
+        username: username of the student
+        password: password of the student
 
-    # check 2: check if the username has been taken already
+    Returns:
+        0 if the student was created successfully
+        1 if the username is already taken
+        2 if the password is not strong enough
+        3 if the student could not be created
+    """
+    username = username.lower()
+
+    # check if the username has been taken already
     if username_exists(username):
-        print("Username taken, try again!")
-        return
+        return 1
 
-    # check 3: check if the password is strong enough
+    # check if the password is strong enough
     if not check_strong_password(password):
-        print("Password is not strong enough.")
-        return
+        return 2
 
     salt = Util.generate_salt()
     hash = Util.generate_hash(password, salt)
 
     # create the patient
-    patient = Student(username, salt=salt, hash=hash)
+    student = Student(username, salt=salt, hash=hash)
 
     # save to patient information to our database
     try:
-        patient.save_to_db()
+        student.save_to_db()
     except pymssql.Error as e:
         print("Failed to create user.")
         print("Db-Error:", e)
@@ -54,48 +56,9 @@ def create_student(tokens):
     except Exception as e:
         print("Failed to create user.")
         print(e)
-        return
-    print("Created user ", username)
-
-
-def create_instructor(tokens):
-    # create_caregiver <username> <password>
-    # check 1: the length for tokens need to be exactly 3 to include all
-    # information (with the operation name)
-    if len(tokens) != 3:
-        print("Failed to create user.")
-        return
-
-    username = tokens[1].lower()
-    password = tokens[2]
-    # check 2: check if the username has been taken already
-    if username_exists(username, True):
-        print("Username taken, try again!")
-        return
-
-    # check 3: check if the password is strong enough
-    if not check_strong_password(password):
-        print("Password is not strong enough.")
-        return
-
-    salt = Util.generate_salt()
-    hash = Util.generate_hash(password, salt)
-
-    # create the caregiver
-    instructor = Instructor(username, salt=salt, hash=hash)
-
-    # save to caregiver information to our database
-    try:
-        instructor.save_to_db()
-    except pymssql.Error as e:
-        print("Failed to create user.")
-        print("Db-Error:", e)
-        quit()
-    except Exception as e:
-        print("Failed to create user.")
-        print(e)
-        return
-    print("Created user ", username)
+        return 3
+    
+    return 0
 
 
 def username_exists(username, is_instructor=False):
@@ -130,7 +93,7 @@ def username_exists(username, is_instructor=False):
     return False
 
 
-def check_strong_password(password):
+def check_strong_password(password: str) -> bool:
     # returns true if the password is strong enough; otherwise false.
     # check 1: if the password is at least 8 characters long
     if len(password) < 8:
@@ -162,22 +125,17 @@ def check_strong_password(password):
     return True
 
 
-def login_student(tokens):
-    # login_patient <username> <password>
-    # check 1: if someone's already logged-in, they need to log out first
-    global current_student
-    if current_student is not None or current_instructor is not None:
-        print("User already logged in.")
-        return
+def login_student(useranme: str, password: str) -> Student:
+    """Login a student with the given username and password.
 
-    # check 2: the length for tokens need to be exactly 3 to include all
-    # information (with the operation name)
-    if len(tokens) != 3:
-        print("Login failed.")
-        return
+    Args:
+        username (str): the username of the student
+        password (str): the password of the student
 
-    username = tokens[1].lower()
-    password = tokens[2]
+    Returns:
+        Student: the student object if the login is successful; otherwise None
+    """
+    username = username.lower()
 
     student = None
     try:
@@ -189,32 +147,22 @@ def login_student(tokens):
     except Exception as e:
         print("Login failed.")
         print("Error:", e)
-        return
+        return None
 
-    # check if the login was successful
-    if student is None:
-        print("Login failed.")
-    else:
-        print("Logged in as: " + username)
-        current_student = student
+    return student
+    
 
+def login_instructor(username: str, password: str) -> Instructor:
+    """Login a instructor with the given username and password.
+    
+    Args:
+        username (str): the username of the instructor
+        password (str): the password of the instructor
 
-def login_caregiver(tokens):
-    # login_caregiver <username> <password>
-    # check 1: if someone's already logged-in, they need to log out first
-    global current_instructor
-    if current_instructor is not None or current_student is not None:
-        print("User already logged in.")
-        return
-
-    # check 2: the length for tokens need to be exactly 3 to include all
-    # information (with the operation name)
-    if len(tokens) != 3:
-        print("Login failed.")
-        return
-
-    username = tokens[1].lower()
-    password = tokens[2]
+    Returns:
+        Instructor: the instructor object if the login is successful; otherwise None
+    """
+    username = username.lower()
 
     instructor = None
     try:
@@ -226,14 +174,9 @@ def login_caregiver(tokens):
     except Exception as e:
         print("Login failed.")
         print("Error:", e)
-        return
+        return None
 
-    # check if the login was successful
-    if instructor is None:
-        print("Login failed.")
-    else:
-        print("Logged in as: " + username)
-        current_instructor = instructor
+    return instructor
 
 
 def search_instructor_schedule(tokens):
@@ -283,77 +226,19 @@ def search_instructor_schedule(tokens):
         return
 
 
-def reserve(tokens):
-    # reserve <date> <vaccine>
-    # check 1: check if the current logged-in user is a patient
-    if current_student is None and current_instructor is None:
-        print("Please login first!")
-        return
+def reserve(student: Student, instr_username: str, instr_name: str, time: str) -> int:
+    """Reserve a time slot for the given student.
+    
+    Args:
+        student (Student): the student object
+        instr_username (str): the username of the instructor
+        instr_name (str): the name of the instructor
+        time (str): the time slot to reserve
 
-    if current_student is None:
-        print("Please login as a patient first!")
-        return
-
-    # check 2: the length for tokens need to be exactly 3 to include all
-    # information (with the operation name)
-    if len(tokens) != 3:
-        print("Please try again!")
-        return
-
-    date = tokens[1].lower()
-    vaccine_name = tokens[2].lower()
-    # assume input is hyphenated in the format mm-dd-yyyy
-    date_tokens = date.split("-")
-    month = int(date_tokens[0])
-    day = int(date_tokens[1])
-    year = int(date_tokens[2])
-
-    # check 3: the date must be valid
-    try:
-        d = datetime.date(year, month, day)
-    except ValueError:
-        print("Invalid date. Please try again!")
-        return
-
-    # reserve the availablity
-    current_patient.make_schedule(vaccine, d)
-
-
-def upload_availability(tokens):
-    #  upload_availability <date>
-    #  check 1: check if the current logged-in user is a caregiver
-    global current_caregiver
-    if current_caregiver is None:
-        print("Please login as a caregiver first!")
-        return
-
-    #  check 2: the length for tokens need to be exactly 2 to include all
-    #  information (with the operation name)
-    if len(tokens) != 2:
-        print("Please try again!")
-        return
-
-    date = tokens[1].lower()
-    #  assume input is hyphenated in the format mm-dd-yyyy
-    date_tokens = date.split("-")
-    month = int(date_tokens[0])
-    day = int(date_tokens[1])
-    year = int(date_tokens[2])
-    try:
-        d = datetime.datetime(year, month, day)
-        current_caregiver.upload_availability(d)
-    except pymssql.Error as e:
-        print("Upload Availability Failed")
-        print("Db-Error:", e)
-        quit()
-    except ValueError:
-        print("Please enter a valid date!")
-        return
-    except Exception as e:
-        print("Error occurred when uploading availability")
-        print("Error:", e)
-        return
-    print("Availability uploaded!")
+    Returns:
+        int: status code
+    """
+    return student.make_schedule(instr_username, instr_name, time)
 
 
 def cancel(tokens):
@@ -361,64 +246,6 @@ def cancel(tokens):
     TODO: Extra Credit
     """
     pass
-
-
-def add_doses(tokens):
-    #  add_doses <vaccine> <number>
-    #  check 1: check if the current logged-in user is a caregiver
-    global current_caregiver
-    if current_caregiver is None:
-        print("Please login as a caregiver first!")
-        return
-
-    #  check 2: the length for tokens need to be exactly 3 to include all
-    #  information (with the operation name)
-    if len(tokens) != 3:
-        print("Please try again!")
-        return
-
-    vaccine_name = tokens[1].lower()
-    doses = int(tokens[2])
-    vaccine = None
-    try:
-        vaccine = Vaccine(vaccine_name, doses).get()
-    except pymssql.Error as e:
-        print("Error occurred when adding doses")
-        print("Db-Error:", e)
-        quit()
-    except Exception as e:
-        print("Error occurred when adding doses")
-        print("Error:", e)
-        return
-
-    # if the vaccine is not found in the database, add a new (vaccine, doses)
-    # entry. else, update the existing entry by adding the new doses
-    if vaccine is None:
-        vaccine = Vaccine(vaccine_name, doses)
-        try:
-            vaccine.save_to_db()
-        except pymssql.Error as e:
-            print("Error occurred when adding doses")
-            print("Db-Error:", e)
-            quit()
-        except Exception as e:
-            print("Error occurred when adding doses")
-            print("Error:", e)
-            return
-    else:
-        # if the vaccine is not null, meaning that the vaccine already exists
-        # in our table
-        try:
-            vaccine.increase_available_doses(doses)
-        except pymssql.Error as e:
-            print("Error occurred when adding doses")
-            print("Db-Error:", e)
-            quit()
-        except Exception as e:
-            print("Error occurred when adding doses")
-            print("Error:", e)
-            return
-    print("Doses updated!")
 
 
 def show_appointments(tokens):
@@ -460,86 +287,3 @@ def logout(tokens):
         return
 
     print("Successfully logged out!")
-
-
-def start():
-    stop = False
-    print()
-    print(" *** Please enter one of the following commands *** ")
-    print("> create_patient <username> <password>")
-    print("> create_caregiver <username> <password>")
-    print("> login_patient <username> <password>")
-    print("> login_caregiver <username> <password>")
-    print("> search_caregiver_schedule <date>")
-    print("> reserve <date> <vaccine>")
-    print("> upload_availability <date>")
-    print("> cancel <appointment_id>")
-    print("> add_doses <vaccine> <number>")
-    print("> show_appointments")
-    print("> logout")
-    print("> Quit")
-    print()
-    print("Notice: Please use a strong password for all users.")
-    print("    - must be at least 8 characters long.")
-    print("    - must be a mixture of both uppercase and lowercase letters.")
-    print("    - must be a mixture of letters and numbers.")
-    print("    - must include of at least one special character, from “!”, “@”, “#”, “?”.")
-    print()
-    while not stop:
-        response = ""
-        print("> ", end='')
-
-        try:
-            response = str(input())
-        except ValueError:
-            print("Please try again!")
-            break
-
-        # response = response.lower()
-        tokens = response.split(" ")
-        if len(tokens) == 0:
-            ValueError("Please try again!")
-            continue
-        operation = tokens[0].lower()
-        if operation == "create_patient":
-            create_patient(tokens)
-        elif operation == "create_caregiver":
-            create_caregiver(tokens)
-        elif operation == "login_patient":
-            login_patient(tokens)
-        elif operation == "login_caregiver":
-            login_caregiver(tokens)
-        elif operation == "search_caregiver_schedule":
-            search_caregiver_schedule(tokens)
-        elif operation == "reserve":
-            reserve(tokens)
-        elif operation == "upload_availability":
-            upload_availability(tokens)
-        elif operation == cancel:
-            cancel(tokens)
-        elif operation == "add_doses":
-            add_doses(tokens)
-        elif operation == "show_appointments":
-            show_appointments(tokens)
-        elif operation == "logout":
-            logout(tokens)
-        elif operation == "quit":
-            print("Bye!")
-            stop = True
-        else:
-            print("Invalid operation name!")
-
-
-if __name__ == "__main__":
-    '''
-    // pre-define the three types of authorized vaccines
-    // note: it's a poor practice to hard-code these values, but we will do
-    // this for the simplicity of this assignment
-    // and then construct a map of vaccineName -> vaccineObject
-    '''
-
-    # start command line
-    print()
-    print("Welcome to the COVID-19 Vaccine Reservation Scheduling Application!")
-
-    start()
