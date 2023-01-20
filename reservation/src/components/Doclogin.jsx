@@ -21,12 +21,12 @@ function Doclogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.get(
-      //   `/account/username=${user}&password=${pwd}`
-      // );
-    //   sessionStorage.setItem('app-token', response.data.token);
-      const response = await axios.get('http://localhost:3500/doc_account');
-      console.log(response.data)
+      const response = await axios.get(
+        `/docaccount/username=${user}&password=${pwd}`
+      );
+      sessionStorage.setItem('app-token', response.data.token);
+      sessionStorage.setItem('userid', JSON.stringify(response.data.data));
+      // const response = await axios.get('http://localhost:3500/doc_account');
       setUser('');
       setPwd('');
       setSuccess(true);

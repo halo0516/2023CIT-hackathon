@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import './Homepage.css';
 import {useTimeSlots} from './CustomHook';
+import {reserve_12, unreserve_12,reserve_13, unreserve_13,reserve_14, unreserve_14,reserve_15, unreserve_15,reserve_16, unreserve_16} from '../api/axios';
 
 function DocTimeSlot(doc_info) {
     const [userInfo, setUserInfo] = useState(doc_info.doc_info);
-    const logeduserinfo = "Benjamin";
+    const logeduserinfo = sessionStorage.getItem('userid');
+    console.log(logeduserinfo);
+
     const [twelveslot, setTwelveslot] = useState(userInfo?.twelve.length === 0 ? "12:00" : "--:--");
     const handleReserve_12 = async()=> {
         const updateduserinfo = userInfo;
@@ -12,10 +15,12 @@ function DocTimeSlot(doc_info) {
             updateduserinfo.twelve = logeduserinfo;
             setUserInfo(updateduserinfo);
             setTwelveslot("--:--");
+            await reserve_12(userInfo.Docid, logeduserinfo);
         }else{
             updateduserinfo.twelve = "";
             setUserInfo(updateduserinfo);
             setTwelveslot("12:00");
+            await unreserve_12(userInfo.Docid);
 
         }
         console.log(userInfo);
@@ -26,11 +31,13 @@ function DocTimeSlot(doc_info) {
         if(userInfo.thirteen.length === 0){
             updateduserinfo.thirteen = logeduserinfo;
             setUserInfo(updateduserinfo);
-            setThirteenslot("--:--")
+            setThirteenslot("--:--");
+            await reserve_13(userInfo.Docid, logeduserinfo);
         }else{
             updateduserinfo.thirteen = "";
             setUserInfo(updateduserinfo);
             setThirteenslot("13:00");
+            await unreserve_13(userInfo.Docid);
         }
 
     }
@@ -42,10 +49,12 @@ function DocTimeSlot(doc_info) {
             updateduserinfo.fourteen = logeduserinfo;
             setUserInfo(updateduserinfo);
             setFourteenslot("--:--");
+            await reserve_14(userInfo.Docid, logeduserinfo);
         }else{
             updateduserinfo.fourteen = "";
             setUserInfo(updateduserinfo);
             setFourteenslot("14:00");
+            await unreserve_14(userInfo.Docid);
         }
     }
     const [fifteenslot, setFifteenslot] = useState(userInfo?.fifteen.length === 0 ? "15:00" : "--:--");
@@ -55,10 +64,12 @@ function DocTimeSlot(doc_info) {
             updateduserinfo.fifteen = logeduserinfo;
             setUserInfo(updateduserinfo);
             setFifteenslot("--:--");
+            await reserve_15(userInfo.Docid, logeduserinfo);
         }else{
             updateduserinfo.fifteen = "";
             setUserInfo(updateduserinfo);
             setFifteenslot("15:00");
+            await unreserve_15(userInfo.Docid);
         }
     }
     const [sixteenslot, setSixteenslot] = useState(userInfo?.sixteen.length === 0 ? "16:00" : "--:--");
@@ -68,27 +79,15 @@ function DocTimeSlot(doc_info) {
             updateduserinfo.sixteen = logeduserinfo;
             setUserInfo(updateduserinfo);
             setSixteenslot("--:--");
+            await reserve_16(userInfo.Docid, logeduserinfo);
         }else{
             updateduserinfo.sixteen = "";
             setUserInfo(updateduserinfo);
             setSixteenslot("16:00");
+            await unreserve_16(userInfo.Docid);
         }
     }
-    const [seventeenslot, setSeventeenslot] = useState(userInfo?.seventeen.length === 0 ? "17:00" : "--:--");
-    const handleReserve_17 = async() => {
-        const updateduserinfo = userInfo;
-        if(userInfo.seventeen.length === 0 ){
-            updateduserinfo.seventeen = logeduserinfo;
-            setUserInfo(updateduserinfo);
-            setSeventeenslot("--:--");
-        }else{
-            updateduserinfo.seventeen = "";
-            setUserInfo(updateduserinfo);
-            setSeventeenslot("17:00");
-        }
-    }
-    // sixteen
-    // seventeen
+
     return (
         <div className='doc_time'>
             <div className='doc_integrate'>
@@ -106,7 +105,6 @@ function DocTimeSlot(doc_info) {
                     <div className='time_button' onClick={() => {handleReserve_14()}}>{fourteenslot}</div>
                     <div className='time_button' onClick={() => {handleReserve_15()}}>{fifteenslot}</div>
                     <div className='time_button' onClick={() => {handleReserve_16()}}>{sixteenslot}</div>
-                    <div className='time_button' onClick={() => {handleReserve_17()}}>{seventeenslot}</div>
                 </div>
             </div>
     )
@@ -114,6 +112,7 @@ function DocTimeSlot(doc_info) {
  
 function HomePage() {
     const timeslot = useTimeSlots();
+    console.log(timeslot)
     const [timeview, setTimeview] = useState(<></>);
     const viewTimeslot = (docid) =>{
         setTimeview(<DocTimeSlot doc_info={timeslot[docid]}/>)

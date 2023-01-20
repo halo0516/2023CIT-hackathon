@@ -21,16 +21,17 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.get(
-      //   `/account/username=${user}&password=${pwd}`
-      // );
-    //   sessionStorage.setItem('app-token', response.data.token);
-      const response = await axios.get('http://localhost:3500/account');
-      console.log(response.data)
+      const response = await axios.get(
+        `/account/username=${user}&password=${pwd}`
+      );
+      sessionStorage.setItem('app-token', response.data.token);
+      sessionStorage.setItem('userid', response.data.data.id);
+      // const response = await axios.get('http://localhost:3500/account');
       setUser('');
       setPwd('');
       setSuccess(true);
     } catch (err) {
+      console.log(err);
       if (!err.response) {
         setErrMsg('No Server Response');
       } else if (err.response.status === 400) {
