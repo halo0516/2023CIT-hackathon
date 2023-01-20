@@ -1,5 +1,5 @@
 # MCIT On-Campus 2023 Winter Hackathon
-Project Name: MCIT Reservation System
+Project Name: MCIT Reservation System <br>
 Group Members:
 | Name  | Email |
 | ------------- | ------------- |
