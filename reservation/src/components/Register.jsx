@@ -64,7 +64,7 @@ function Register() {
       return;
     }
     try {
-      const newUser = { username: user, password: pwd, firstname: fstName, lastname: lstName };
+      const newUser = { username: user, pwd: pwd, firstname: fstName, lastname: lstName };
       const response = await register(newUser);
       console.log(JSON.stringify(response));
       setSuccess(true);

@@ -8,6 +8,7 @@ export function useTimeSlots() {
     useEffect(() => {
       const fetchData = async () => {
         const response = await getInfo();
+        console.log(response);
         setTimeslot(response);
       };
       fetchData();

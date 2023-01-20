@@ -6,7 +6,10 @@ import logoutIcon from '../icons/Arrow_Export.svg';
 
 function Navbar() {
   const handleLogout = () => {
-    // sessionStorage.removeItem('app-token');
+    sessionStorage.removeItem('app-token');
+    sessionStorage.removeItem('userid');
+    sessionStorage.removeItem('FstName');
+    sessionStorage.removeItem('LstName');
     window.location.replace("/login");
   }
   return (
